@@ -16,3 +16,8 @@ type Article struct {
 	ModifiedBy    string `json:"modified_by"`
 	State         int    `json:"state"`
 }
+
+func (o Article) GetAllArticle() (result []Article, err error) {
+	err = db.Model(o).Find(&result).Error
+	return
+}
