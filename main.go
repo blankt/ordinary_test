@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"ordinary_test/pkg/setting"
 	"ordinary_test/routers"
@@ -26,6 +27,7 @@ func main() {
 		WriteTimeout:   time.Second * 10,
 		MaxHeaderBytes: 1 << 20,
 	}
+	fmt.Println("test CI/CD")
 
 	s.ListenAndServe()
 }
