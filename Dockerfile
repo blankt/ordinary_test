@@ -9,16 +9,16 @@ ENV CGO_ENABLED 1
 ENV GOFLAGS -mod=vendor
 COPY . /go/src
 WORKDIR /go/src
-RUN go build -v -o ordinarytest -ldflags "-s -w" .
+RUN go build -v -o drone -ldflags "-s -w" .
 
 # ===========================
 
 FROM debian:buster
 LABEL maintainer="tlf <tlf@qq.com>"
-COPY --from=builder /go/src/ordinarytest /
+COPY --from=builder /go/src/drone /
 WORKDIR /
 ENV TZ Asia/Shanghai
 ENV LOG_LEVEL 0
 EXPOSE 8080
 ENV db postgres://postgres:postgres@43.143.109.42:5432/drone?sslmode=disable
-ENTRYPOINT /ordinarytest
+ENTRYPOINT /drone
