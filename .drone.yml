@@ -22,9 +22,9 @@ steps:
       registry: registry.cn-heyuan.aliyuncs.com
       dockerfile: Dockerfile
       username:
-        from_secret: 17778696367
+        from_secret: docker_username
       password:
-        from_secret: t5475949597
+        from_secret: docker_password
     when:
       branch:
         - master
