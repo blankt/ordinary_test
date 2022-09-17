@@ -30,7 +30,7 @@ var ServerSetting = &Server{}
 func Setup() {
 	config := viper.New()
 	config.SetConfigName("app")
-	config.SetConfigType("yml")
+	config.SetConfigType("yaml")
 	config.AddConfigPath("conf")
 	err := config.ReadInConfig()
 	if err != nil {
