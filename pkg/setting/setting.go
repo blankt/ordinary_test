@@ -19,30 +19,31 @@ type Database struct {
 var DatabaseSetting = &Database{}
 
 type Server struct {
-	RunMode      string        `mapstructure:"run_mode"`
-	HttpPort     int           `mapstructure:"http_port"`
-	ReadTimeout  time.Duration `mapstructure:"read_timeout"`
-	WriteTimeout time.Duration `mapstructure:"write_timeout"`
+	RunMode      string        `mapstructure:"runmode"`
+	HttpPort     int           `mapstructure:"httpport"`
+	ReadTimeout  time.Duration `mapstructure:"readtimeout"`
+	WriteTimeout time.Duration `mapstructure:"writetimeout"`
 }
 
 var ServerSetting = &Server{}
 
 func Setup() {
-	viper.SetConfigName("app")
-	viper.SetConfigType("ini")
-	viper.AddConfigPath("conf")
-	err := viper.ReadInConfig()
+	config := viper.New()
+	config.SetConfigName("app")
+	config.SetConfigType("yml")
+	config.AddConfigPath("conf")
+	err := config.ReadInConfig()
 	if err != nil {
-		log.Fatalf("setting.Setup,fail to parse `conf/app.ini`:%v", err)
+		log.Fatalf("setting.Setup,fail to parse `conf/app.yaml`:%v", err)
 	}
-	err = viper.Unmarshal(&DatabaseSetting)
+	err = config.Unmarshal(&DatabaseSetting)
 	fmt.Println(DatabaseSetting)
 	if err != nil {
-		log.Fatalf("setting.Setup,fail to parse `conf/app.ini`:%v", err)
+		log.Fatalf("setting.Setup,fail to parse `conf/app.yaml`:%v", err)
 	}
-	err = viper.Unmarshal(&ServerSetting)
+	err = config.Unmarshal(&ServerSetting)
 	fmt.Println(ServerSetting)
 	if err != nil {
-		log.Fatalf("setting.Setup,fail to parse `conf/app.ini`:%v", err)
+		log.Fatalf("setting.Setup,fail to parse `conf/app.yaml`:%v", err)
 	}
 }

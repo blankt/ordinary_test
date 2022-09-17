@@ -1,0 +1,13 @@
+database:
+  type: postgres
+  user: root
+  password: root
+  host: 127.0.0.1
+  port: 5432
+  dBName: blog
+
+server:
+  runMode: debug
+  httpPort: 8000
+  readTimeout: 60
+  writeTimeout: 60
