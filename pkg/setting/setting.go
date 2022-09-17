@@ -30,7 +30,7 @@ var ServerSetting = &Server{}
 func Setup() {
 	viper.SetConfigName("app")
 	viper.SetConfigType("ini")
-	viper.AddConfigPath("D:\\goProject\\ordinary_test\\conf")
+	viper.AddConfigPath("conf")
 	err := viper.ReadInConfig()
 	if err != nil {
 		log.Fatalf("setting.Setup,fail to parse `conf/app.ini`:%v", err)
