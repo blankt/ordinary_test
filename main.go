@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"ordinary_test/pkg/setting"
 	"ordinary_test/routers"
-	"time"
 )
 
 func init() {
@@ -16,16 +15,16 @@ func init() {
 func main() {
 	router := routers.InitRouter()
 
-	//readTimeout := setting.ServerSetting.ReadTimeout
-	//writeTimeout := setting.ServerSetting.WriteTimeout
-	//endPoint := fmt.Sprintf(":%d", setting.ServerSetting.HttpPort)
-	//maxHeaderBytes := 1 << 20
+	readTimeout := setting.ServerSetting.ReadTimeout
+	writeTimeout := setting.ServerSetting.WriteTimeout
+	endPoint := fmt.Sprintf(":%d", setting.ServerSetting.HttpPort)
+	maxHeaderBytes := 1 << 20
 	s := &http.Server{
-		Addr:           ":8000",
+		Addr:           endPoint,
 		Handler:        router,
-		ReadTimeout:    time.Second * 10,
-		WriteTimeout:   time.Second * 10,
-		MaxHeaderBytes: 1 << 20,
+		ReadTimeout:    readTimeout,
+		WriteTimeout:   writeTimeout,
+		MaxHeaderBytes: maxHeaderBytes,
 	}
 	fmt.Println("test CI/CD")
 

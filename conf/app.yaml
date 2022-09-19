@@ -9,5 +9,5 @@ database:
 server:
   runMode: debug
   httpPort: 8000
-  readTimeout: 60
-  writeTimeout: 60
+  readTimeout: 60s
+  writeTimeout: 60s
