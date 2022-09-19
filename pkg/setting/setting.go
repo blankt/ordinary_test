@@ -31,7 +31,7 @@ func Setup() {
 	config := viper.New()
 	config.SetConfigName("app")
 	config.SetConfigType("yaml")
-	config.AddConfigPath("./conf")
+	config.AddConfigPath("./config")
 	err := config.ReadInConfig()
 	if err != nil {
 		log.Fatalf("setting.Setup,fail to parse `conf/app.yaml`:%v", err)

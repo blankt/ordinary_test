@@ -20,4 +20,5 @@ func Setup() {
 		setting.DatabaseSetting.Port)), &gorm.Config{}); err != nil {
 		log.Fatalf("models.Setup err: %v", err)
 	}
+	db.AutoMigrate()
 }

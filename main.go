@@ -26,7 +26,5 @@ func main() {
 		WriteTimeout:   writeTimeout,
 		MaxHeaderBytes: maxHeaderBytes,
 	}
-	fmt.Println("test CI/CD")
-
 	s.ListenAndServe()
 }
