@@ -4,11 +4,19 @@ import (
 	"fmt"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
+	"gorm.io/gorm/schema"
 	"log"
 	"ordinary_test/pkg/setting"
 )
 
 var db *gorm.DB
+
+var DatabaseAutoMigrate = []interface{}{
+	&Article{},
+	&Auth{},
+	&Tag{},
+}
 
 func Setup() {
 	var err error
@@ -17,8 +25,15 @@ func Setup() {
 		setting.DatabaseSetting.User,
 		setting.DatabaseSetting.Password,
 		setting.DatabaseSetting.DBName,
-		setting.DatabaseSetting.Port)), &gorm.Config{}); err != nil {
+		setting.DatabaseSetting.Port)),
+		&gorm.Config{
+			NamingStrategy: schema.NamingStrategy{
+				SingularTable: true,
+			},
+			Logger: logger.Default.LogMode(logger.Info),
+		},
+	); err != nil {
 		log.Fatalf("models.Setup err: %v", err)
 	}
-	db.AutoMigrate()
+	db.AutoMigrate(DatabaseAutoMigrate...)
 }

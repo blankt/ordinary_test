@@ -14,6 +14,7 @@ type Database struct {
 	Host     string
 	Port     string
 	DBName   string
+	PageSize int
 }
 
 var DatabaseSetting = &Database{}
@@ -31,7 +32,7 @@ func Setup() {
 	config := viper.New()
 	config.SetConfigName("app")
 	config.SetConfigType("yaml")
-	config.AddConfigPath("./config")
+	config.AddConfigPath("./conf")
 	err := config.ReadInConfig()
 	if err != nil {
 		log.Fatalf("setting.Setup,fail to parse `conf/app.yaml`:%v", err)

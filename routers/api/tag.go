@@ -7,7 +7,7 @@ import (
 	"ordinary_test/pkg/e"
 )
 
-// @Summary Get multiple article tags
+// GetTags @Summary Get multiple article tags
 // @Produce  json
 // @Param name query string false "Name"
 // @Param state query int false "State"

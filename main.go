@@ -3,13 +3,14 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"ordinary_test/model"
 	"ordinary_test/pkg/setting"
 	"ordinary_test/routers"
 )
 
 func init() {
 	setting.Setup()
-	//model.Setup()
+	model.Setup()
 }
 
 func main() {
